@@ -1,0 +1,19 @@
+.header-profile{
+    left: 58.7rem;
+    width: 30rem;
+}
+.header-img{
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+}
+.creditor{
+    position: absolute;
+    top: 450px;
+    left: 51rem
+}
+.debtor{
+    position: absolute;
+    top: 450px;
+    left: 73rem
+}
