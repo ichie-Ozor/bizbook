@@ -1,11 +1,12 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import data from '../data'
+// import data from '../data'
 import { AuthContext } from '../Context/auth'
 
 function LandingPage() {
   const navigate = useNavigate()
-  const { user, setUser, logOut} = useContext(AuthContext)
+  // const { user, setUser, logOut} = useContext(AuthContext)
+  const { user } = useContext(AuthContext)
   const [ clicked, setClicked ] = useState(true)
   const [isSigneIn, setIsSigneIn] = useState({
     email: "",
