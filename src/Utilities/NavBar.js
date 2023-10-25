@@ -2,7 +2,7 @@ import React from 'react'
 
 function NavBar() {
   return (
-    <div className='h-screen bg-primary-500 w-48 absolute grid top-0 justify-items-center'>
+    <div className='fixed h-screen bg-primary-500 w-48  grid top-0 justify-items-center'>
       <div className='absolute font-ms text-white text-8xl font-black flex top-5'>
          J <div className='text-7xl top-2 relative -left-1 block '>kl<span className='text-xl -top-3 relative block'>stores</span></div>
       </div>

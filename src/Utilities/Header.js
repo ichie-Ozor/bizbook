@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 
 
 
 function Header() {
+  const navigate = useNavigate()
   const [ open, setOpen ] = useState(false)
   const [profile, setProfile ] = useState({
     fName: "",
@@ -43,7 +44,7 @@ function Header() {
 
   return (
     <div className='bg-primary-200 h-36 flex'>
-      <NavLink to=''><div className='text-gray-300 relative left-56 top-14 text-3xl font-bold'>Welcome</div></NavLink>
+      <NavLink to=''><div className='text-gray-300 relative left-56 top-14 text-3xl font-bold' onClick={() => navigate('dashboard')}>Welcome</div></NavLink>
       <div className='header-profile flex relative bg-primary-500 w-96 h-28 top-4 rounded-l-ksm'>
         <div className='header-img bg-gray-400  left-10 relative'>
           <img src='' alt='' />

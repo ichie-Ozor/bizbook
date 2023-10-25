@@ -17,6 +17,15 @@
 .btn3{
     @apply w-80 h-12 bg-white mt-3 relative left-1 top-4 rounded-md p-4 text-lg shadow-xl hover:shadow
 }
+.btn4{
+    @apply w-52 h-12 bg-white ml-3 relative left-1 top-4 rounded-md p-4 text-lg shadow-xl hover:shadow
+}
 .header-input{
     @apply w-80 border-2 border-gray-400 relative left-6 h-14 m-2 rounded p-2 shadow-xl hover:shadow text-gray-600
+}
+.table-header{
+    @apply bg-gray-200 w-44 h-10 rounded pt-2
+}
+.table-data{
+    @apply bg-gray-100 w-44 h-10 rounded pt-2 flex justify-center text-xl
 }
