@@ -24,9 +24,9 @@ function CreditorModal({visible, onClose}) {
   }
 
   // this collects the  data when you click the sibmit button
-  const onSubmitHandler = (e) => {
+  const onSubmitCreditorHandler = (e) => {
     e.preventDefault()
-    console.log(newCreditor)
+    
     onClose()
     setNewCreditor({
       fName: "",
@@ -35,10 +35,11 @@ function CreditorModal({visible, onClose}) {
       bName: "",
       address: ""
     })
-   navigate('creditor')
+    navigate('creditor')
   } 
+  console.log("creditor", newCreditor)
   // this closes the modal when you click outside the input form
-    const handleOnClose = (e) => {
+    const handleCreditorOnClose = (e) => {
         if(e.target.id === "container") onClose()
     }
     if(!visible) return null
@@ -46,7 +47,7 @@ function CreditorModal({visible, onClose}) {
 
 
   return (
-    <div id="container" onClick={handleOnClose} className='fixed bg-black inset-0 bg-opacity-60 backdrop-blur-sm flex justify-center items-center'>
+    <div id="container" onClick={handleCreditorOnClose} className='fixed bg-black inset-0 bg-opacity-60 backdrop-blur-sm flex justify-center items-center'>
       <div className='w-96 h-3/5 bg-white rounded-xl'>
         <div className='relative top-4 left-10 font-bold'>New Creditor Account</div>
         <div onClick={onClose} className='cursor-pointer relative left-80 -top-2 z-10'>
@@ -54,7 +55,7 @@ function CreditorModal({visible, onClose}) {
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
         </div>
-        <form className='grid justify-center' onSubmit={onSubmitHandler}>
+        <form className='grid justify-center' onSubmit={onSubmitCreditorHandler}>
             <input className='btn3' type='text' placeholder='Enter First Name' name='fName' value={newCreditor.fName} onChange={onChange}/>
             <input className='btn3' type='text' placeholder='Enter Last Name' name='lName' value={newCreditor.lName} onChange={onChange}/>
             <input className='btn3' type='Number' placeholder='Enter Phone Number' name='pNumber' value={newCreditor.pNumber} onChange={onChange}/>

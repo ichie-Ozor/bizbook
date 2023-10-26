@@ -2,14 +2,16 @@ import React, { useState } from 'react'
 import Header from '../Utilities/Header'
 import NavBar from '../Utilities/NavBar'
 import CreditorModal from '../Utilities/CreditorModal'
-import { NavLink } from 'react-router-dom'
 import DebtorModal from '../Utilities/DebtorModal'
+import { NavLink } from 'react-router-dom'
 
 
 function Dashboard() {
   const [ openCreditor, setOpenCreditor ] = useState(false)
   const [ openDebtor, setOpenDebtor ] = useState(false)
-  const [ showModal, setShowModal ] = useState(false)
+  const [ showCreditorModal, setShowCreditorModal ] = useState(false)
+  const [ showDebtorModal, setShowDebtorModal ] = useState(false)
+
 
 
 
@@ -27,7 +29,9 @@ function Dashboard() {
     } else setOpenDebtor(false)
   }
 
-  const handleOnClose = () => setShowModal(false)
+  const handleCreditorOnClose = () => setShowCreditorModal(false)
+  const handleDebtorOnClose = () => setShowDebtorModal(false)
+
 
 
 
@@ -45,20 +49,20 @@ function Dashboard() {
       </div>
       {openCreditor ? 
       <div className='creditor relative w-1/5 h-24 bg-white flex p-4 shadow-2xl rounded hover:shadow'>
-        <div className='btn2' onClick={() => setShowModal(true)}>New Account?</div>
+        <div className='btn2' onClick={() => setShowCreditorModal(true)}>New Account?</div>
         <NavLink to='creditor'><div className='btn2'>Old Account?</div></NavLink>
       </div> :
       <div></div>
       }
       {openDebtor ? 
       <div className='debtor relative w-1/5 h-24 bg-white flex p-4 shadow-2xl rounded hover:shadow'>
-      <div className='btn2' onClick={() => setShowModal(true)}>New Account?</div>
+      <div className='btn2' onClick={() => setShowDebtorModal(true)}>New Account?</div>
       <NavLink to='debtor'><div className='btn2'>Old Account?</div></NavLink>
     </div> :
       <div></div>
       }
-      <CreditorModal onClose={handleOnClose} visible={showModal}/>
-      <DebtorModal onClose={handleOnClose} visible={showModal} />
+      <CreditorModal onClose={handleCreditorOnClose} visible={showCreditorModal}/>
+      <DebtorModal onClose={handleDebtorOnClose} visible={showDebtorModal} />
     </div>
   )
 }

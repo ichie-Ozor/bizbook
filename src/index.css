@@ -24,8 +24,8 @@
     @apply w-80 border-2 border-gray-400 relative left-6 h-14 m-2 rounded p-2 shadow-xl hover:shadow text-gray-600
 }
 .table-header{
-    @apply bg-gray-200 w-44 h-10 rounded pt-2
+    @apply bg-gray-200 w-40 h-10 rounded pt-2
 }
 .table-data{
-    @apply bg-gray-100 w-44 h-10 rounded pt-2 flex justify-center text-xl
+    @apply bg-gray-100 w-40 h-10 rounded pt-2 flex justify-center text-xl
 }

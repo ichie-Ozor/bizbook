@@ -24,9 +24,8 @@ function DebtorModal({visible, onClose}) {
   }
 
   // this collects the  data when you click the sibmit button
-  const onSubmitHandler = (e) => {
+  const onSubmitDebtorHandler = (e) => {
     e.preventDefault()
-    console.log(newDebtor)
     onClose()
     setNewDebtor({
       fName: "",
@@ -35,8 +34,9 @@ function DebtorModal({visible, onClose}) {
       bName: "",
       address: ""
     })
-   navigate('debtor')
+     navigate('debtor')
   } 
+  console.log('debtor', newDebtor)
   // this closes the modal when you click outside the input form
     const handleOnClose = (e) => {
         if(e.target.id === "container") onClose()
@@ -54,7 +54,7 @@ function DebtorModal({visible, onClose}) {
         <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
         </svg>
         </div>
-        <form className='grid justify-center' onSubmit={onSubmitHandler}>
+        <form className='grid justify-center' onSubmit={onSubmitDebtorHandler}>
             <input className='btn3' type='text' placeholder='Enter First Name' name='fName' value={newDebtor.fName} onChange={onChange}/>
             <input className='btn3' type='text' placeholder='Enter Last Name' name='lName' value={newDebtor.lName} onChange={onChange}/>
             <input className='btn3' type='Number' placeholder='Enter Phone Number' name='pNumber' value={newDebtor.pNumber} onChange={onChange}/>

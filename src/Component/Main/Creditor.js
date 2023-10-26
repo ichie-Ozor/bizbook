@@ -50,12 +50,13 @@ const onChange = (e) => {
  const renderCreditor = creditor.map((value, id) => {
   const { date, description, category, qty, rate } = value;
   return (
-     <tr key={id} className='relative left-60 top-28 mt-2 flex space-x-8'>
+     <tr key={id} className='relative left-60 top-28 mt-2 flex space-x-4'>
       <td className='table-data'>{date}</td>
-      <td className='bg-gray-200 w-80 h-10 rounded pt-2 flex justify-center text-xl'>{description}</td>
+      <td className='bg-gray-200 w-72 h-10 rounded pt-2 flex justify-center text-xl'>{description}</td>
       <td className='table-data'>{category}</td>
       <td className='table-data'>{qty}</td>
       <td className='table-data'>{rate}</td>
+      <td className='table-data'>{rate*qty}</td>
       <button className='w-20 h-8 bg-gray-400 ml-2 relative -left-2 top-1 rounded-md text-white font-bold text-lg shadow-xl hover:shadow hover:text-black hover:bg-white'>Delete</button>
      </tr>
   )
@@ -78,12 +79,13 @@ const onChange = (e) => {
           <button type='submit' className='w-40 h-12 bg-gray-400 ml-2 relative left-1 top-4 rounded-md text-white font-bold text-lg shadow-xl hover:shadow hover:text-black hover:bg-white'>Submit</button>
         </form>
       </div>
-      <table className='relative left-60 top-28 flex space-x-8'>
+      <table className='relative left-60 top-28 flex space-x-4'>
         <th className='table-header'>Date</th>
-        <th className='bg-gray-200 w-80 h-10 rounded pt-2'>Goods Description</th>
+        <th className='bg-gray-200 w-72 h-10 rounded pt-2'>Goods Description</th>
         <th className='table-header'>Category</th>
         <th className='table-header'>Quantity</th>
         <th className='table-header'>Rate</th>
+        <th className='table-header'>Total</th>
       </table>
       <div>{renderCreditor}</div>
     </div>
