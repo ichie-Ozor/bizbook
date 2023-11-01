@@ -2,8 +2,13 @@ import React, { useState } from 'react'
 import NavBar from '../../Utilities/NavBar'
 import Header from '../../Utilities/Header'
 
+
 function Debtor() {
+  let initialValue 
   const [ debtor, setDebtor ] = useState([])
+  const [cash, setCash] = useState(initialValue)
+  // initialValue= cash !== 0 ? cash : 0
+  const [ totalCash, setTotalCash ] = useState(0)
   const [ debtorInput, setDebtorInput ] = useState({
     date: "",
     description: "",
@@ -20,6 +25,8 @@ const onChange = (e) => {
   })
 }
 
+
+
   const submitHandler = (e) => {
     e.preventDefault()
     // console.log("see am here", creditorInput)
@@ -32,10 +39,11 @@ const onChange = (e) => {
       description: debtorInput.description,
       category: debtorInput.category,
       qty: debtorInput.qty,
-      rate: debtorInput.rate
+      rate: debtorInput.rate,
+      total: debtorInput.rate * debtorInput.qty
     },
   ])
-  
+
   setDebtorInput({
     date: "",
     description: "",
@@ -45,10 +53,27 @@ const onChange = (e) => {
   })
     // it should also send data to the backend from here and display it on the page at the same time
   }
-  console.log(debtor)
+
+
+  ////////Total calculations are here////////////////////////////////
+  let bal
+  const cashHandler = (e) => {
+    e.preventDefault()
+    setCash(e.target.value)
+    //  return bal = debtorTotal - cash
+  }
+
+  const totalCashHandler = (e) => {
+    e.preventDefault()
+    const total = debtorTotal - cash
+    setTotalCash(total)
+  }
+  console.log(cash)
+  console.log(bal)    
+  ////////////////Total ends here///////////////////////
 
  const renderDebtor = debtor.map((value, id) => {
-  const { date, description, category, qty, rate } = value;
+  const { total, date, description, category, qty, rate } = value;
   return (
      <tr key={id} className='relative left-60 top-28 mt-2 flex space-x-4'>
       <td className='table-data'>{date}</td>
@@ -56,15 +81,20 @@ const onChange = (e) => {
       <td className='table-data'>{category}</td>
       <td className='table-data'>{qty}</td>
       <td className='table-data'>{rate}</td>
-      <td className='table-data'>{rate*qty}</td>
+      <td className='table-data'>{total}</td>
       <button className='w-20 h-8 bg-gray-400 ml-2 relative left-3 top-1 rounded-md text-white font-bold text-lg shadow-xl hover:shadow hover:text-black hover:bg-white'>Delete</button>
      </tr>
   )
  })
 
-
-
-
+////////////Reducer/////////////
+const reducer = (accumulator, currentValue) => {
+  const returns = accumulator + Number(currentValue.total)
+  console.log(typeof returns);
+  return returns
+}
+const debtorTotal = debtor.reduce(reducer, 0)
+console.log(debtorTotal)
   return (
     <div>
       <NavBar />
@@ -88,6 +118,17 @@ const onChange = (e) => {
         <th className='table-header'>Total</th>
       </table>
       <div>{renderDebtor}</div>
+      <div className='relative float-right right-40 top-40 space-y-8 shadow-xl hover:shadow w-3/5 rounded-xl'>
+        <div className='flex space-x-8'><div className='btn5'>Total: </div>
+          <div className='bg-gray-200 w-72 h-10 rounded pt-2 text-center text-xl'>{debtorTotal}</div>
+        </div>
+          <div className='flex space-x-8'>
+            <div className='btn5'>Cash Paid: </div>
+                <input className='bg-gray-100 w-72 h-10 rounded pt-2 flex justify-center text-xl' value={cash} name='cash' onChange={cashHandler} placeholder='Enter cash payment here'/>
+                <button className='w-20 h-8 bg-gray-400 ml-2 relative left-32 top-1 rounded-md text-white font-bold text-lg shadow-xl hover:shadow hover:text-black hover:bg-white' onClick={totalCashHandler}>Click</button>
+          </div>
+        <div className='btn5'>Bal:</div><div className='bg-gray-100 h-10 rounded pt-2 flex justify-center text-xl relative left-32 -top-16 w-72'>{totalCash}</div>
+      </div>
     </div>
   )
 }
