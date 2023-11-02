@@ -26,6 +26,9 @@
 .btn6{
     @apply w-44 h-12 bg-white ml-3 relative left-1 top-4 rounded-md p-4 text-lg shadow-xl hover:shadow
 }
+.btn7{
+    @apply w-20 h-8 bg-gray-400 ml-2 relative  top-1 rounded-md text-white font-bold text-lg shadow-xl hover:shadow hover:text-black hover:bg-white
+}
 .header-input{
     @apply w-80 border-2 border-gray-400 relative left-6 h-14 m-2 rounded p-2 shadow-xl hover:shadow text-gray-600
 }

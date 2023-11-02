@@ -50,10 +50,30 @@ const onChange = (e) => {
     // it should also send data to the backend from here and display it on the page at the same time
   }
   console.log(creditor)
+ //////////////Delete/////////////
+const deleteHandler = id => {
+  console.log(id)
+  setCreditor(creditor.filter(stocks => stocks.id !== id))
+}
+
+//////////////Edit//////////////////////
+const editHandler = id => {
+  const editItem = creditor.find(item => item.id = id)  //this serches the array to see if the object has the id and returns the object
+  
+  setCreditorInput({
+    ...creditorInput,
+    date: editItem.date,
+    description: editItem.description,
+    category: editItem.category,
+    qty: editItem.qty,
+    rate: editItem.rate,
+  })
+  deleteHandler(id)
+} 
 
 
   ////////Total calculations are here////////////////////////////////
-  let bal
+  
   const cashHandler = (e) => {
     e.preventDefault()
     setCash(e.target.value)
@@ -66,7 +86,7 @@ const onChange = (e) => {
     setTotalCash(total)
   }
   console.log(cash)
-  console.log(bal)    
+     
   ////////////////Total ends here///////////////////////
 
  const renderCreditor = creditor.map((value, id) => {
@@ -79,7 +99,8 @@ const onChange = (e) => {
       <td className='table-data'>{qty}</td>
       <td className='table-data'>{rate}</td>
       <td className='table-data'>{total}</td>
-      <button className='w-20 h-8 bg-gray-400 ml-2 relative -left-2 top-1 rounded-md text-white font-bold text-lg shadow-xl hover:shadow hover:text-black hover:bg-white'>Delete</button>
+      <button className='btn7 left-3' onClick={() => deleteHandler(value.id)}>Delete</button>
+      <button className='btn7 left-3' onClick={() => editHandler(value.id)}>Edit</button>
      </tr>
   )
  })
@@ -122,8 +143,8 @@ console.log(creditorTotal)
         <div className='flex space-x-8'><div className='btn5'>Total: </div>
         <div className='bg-gray-200 w-72 h-10 rounded pt-2 text-center text-xl'>{creditorTotal}</div></div>
           <div className='flex space-x-8'>
-            <div className='btn5'>Cash Paid: </div>
-                <input className='bg-gray-100 w-72 h-10 rounded pt-2 flex justify-center text-xl' value={cash} name='cash' onChange={cashHandler} placeholder='Enter cash payment here'/>
+            <div className='btn5'>Paid: </div>
+                <input className='bg-gray-100 w-72 h-10 rounded pt-2 flex justify-center text-xl text-center' value={cash} name='cash' onChange={cashHandler} placeholder='Enter cash payment here'/>
                 <button className='w-20 h-8 bg-gray-400 ml-2 relative left-3 top-1 rounded-md text-white font-bold text-lg shadow-xl hover:shadow hover:text-black hover:bg-white' onClick={totalCashHandler}>Click</button>
           </div>
         <div className='btn5'>Bal:</div><div className='bg-gray-100 w-72 h-10 rounded pt-2 flex justify-center text-xl relative left-32 -top-16'>{totalCash}</div>

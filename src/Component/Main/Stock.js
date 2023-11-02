@@ -4,8 +4,8 @@ import Header from '../../Utilities/Header'
 
 function Stock() {
 
-  const [ sales, setSales ] = useState([])
-  const [ salesInput, setSalesInput ] = useState({
+  const [ stock, setStock ] = useState([])
+  const [ stockInput, setStockInput ] = useState({
     date: "",
     availGoods: "",
     category: "",
@@ -17,29 +17,29 @@ function Stock() {
   const onChange = (e) => {
     e.preventDefault()
     const { name, value } = e.target
-    setSalesInput({
-      ...salesInput, [name] : value
+    setStockInput({
+      ...stockInput, [name] : value
     })
   }
 
   const submitHandler = (e) => {
     e.preventDefault()
     // console.log("see am here", creditorInput)
-   if(salesInput.date === "" && salesInput.category === "") return 
-   setSales((prev) => [
+   if(stockInput.date === "" && stockInput.category === "") return 
+   setStock((prev) => [
     ...prev,
     {
       id: new Date().getMilliseconds(),
-      date: salesInput.date,
-      availGoods: salesInput.availGoods,
-      category: salesInput.category,
-      qty: salesInput.qty,
-      cPrice: salesInput.cPrice,
-      sPrice: salesInput.sPrice 
+      date: stockInput.date,
+      availGoods: stockInput.availGoods,
+      category: stockInput.category,
+      qty: stockInput.qty,
+      cPrice: stockInput.cPrice,
+      sPrice: stockInput.sPrice 
     },
   ])
 
-  setSalesInput({
+  setStockInput({
     date: "",
     availGoods: "",
     category: "",
@@ -49,18 +49,31 @@ function Stock() {
   })
     // it should also send data to the backend from here and display it on the page at the same time
   }
-  console.log(sales)
+  console.log(stock)
 //////////////Delete/////////////
 const deleteHandler = id => {
-
-  console.log(sales.filter(sale => sale.id !== id)) 
+  console.log(id)
+  setStock(stock.filter(stocks => stocks.id !== id))
 }
+
+
 const editHandler = id => {
-  console.log("see me")
+  const editItem = stock.find(item => item.id = id)  //this serches the array to see if the object has the id and returns the object
+  
+  setStockInput({
+    ...stockInput,
+    date: editItem.date,
+    availGoods: editItem.availGoods,
+    category: editItem.category,
+    qty: editItem.qty,
+    cPrice: editItem.cPrice,
+    sPrice: editItem.sPrice
+  })
+  deleteHandler(id)
 } 
 
    
-    const renderSales = sales.map((value, id) => {
+    const renderStock = stock.map((value, id) => {
       const { sPrice, date, availGoods, category, qty, cPrice } = value;
       return (
          <tr key={id} className='relative left-56 top-28 mt-2 flex space-x-4'>
@@ -70,8 +83,8 @@ const editHandler = id => {
           <td className='table-data'>{qty}</td>
           <td className='table-data'>{cPrice}</td>
           <td className='table-data'>{sPrice}</td>
-          <button className='w-20 h-8 bg-gray-400 ml-2 relative -left-1 top-1 rounded-md text-white font-bold text-lg shadow-xl hover:shadow hover:text-black hover:bg-white' onClick={deleteHandler}>Delete</button>
-          <button className='w-20 h-8 bg-gray-400 ml-2 relative -left-1 top-1 rounded-md text-white font-bold text-lg shadow-xl hover:shadow hover:text-black hover:bg-white' onClick={editHandler}>Edit</button>
+          <button className='btn7 -left-1' onClick={() => deleteHandler(value.id)}>Delete</button>
+          <button className='btn7 -left-1' onClick={() => editHandler(value.id)}>Edit</button>
          </tr>
       )
      })
@@ -81,12 +94,12 @@ const editHandler = id => {
       <Header />
       <div className='absolute left top-22  container'>
         <form className='relative flex  left-2' onSubmit={submitHandler}>
-          <input type='date' placeholder='date'className='btn6' name='date' value={salesInput.date} onChange={onChange}/>
-          <input type='text' placeholder='Available Goods' className='btn6' name='availGoods' value={salesInput.availGoods} onChange={onChange}/>
-          <input type='text' placeholder='Category' className='btn6' name='category' value={salesInput.category} onChange={onChange}/>
-          <input type='number' placeholder='Qty' className='btn6' name='qty' value={salesInput.qty} onChange={onChange}/>
-          <input type='number' placeholder='Cost Price N'className='btn6' name='cPrice' value={salesInput.cPrice} onChange={onChange}/>
-          <input type='number' placeholder='Selling Price N'className='btn6' name='sPrice' value={salesInput.sPrice} onChange={onChange}/>
+          <input type='date' placeholder='date'className='btn6' name='date' value={stockInput.date} onChange={onChange}/>
+          <input type='text' placeholder='Available Goods' className='btn6' name='availGoods' value={stockInput.availGoods} onChange={onChange}/>
+          <input type='text' placeholder='Category' className='btn6' name='category' value={stockInput.category} onChange={onChange}/>
+          <input type='number' placeholder='Qty' className='btn6' name='qty' value={stockInput.qty} onChange={onChange}/>
+          <input type='number' placeholder='Cost Price N'className='btn6' name='cPrice' value={stockInput.cPrice} onChange={onChange}/>
+          <input type='number' placeholder='Selling Price N'className='btn6' name='sPrice' value={stockInput.sPrice} onChange={onChange}/>
           <button type='submit' className='w-40 h-12 bg-gray-400 ml-2 relative left-1 top-4 rounded-md text-white font-bold text-lg shadow-xl hover:shadow hover:text-black hover:bg-white'>Submit</button>
         </form>
       </div>
@@ -98,7 +111,7 @@ const editHandler = id => {
         <th className='table-header'>Cost Price</th>
         <th className='table-header'>Selling Price</th>
       </table>
-      <div>{renderSales}</div>
+      <div>{renderStock}</div>
     </div>
   )
 }

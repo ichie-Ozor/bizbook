@@ -53,6 +53,24 @@ const deleteHandler = id => {
   console.log(sales)
 }
 
+/////////////Edit////////////////
+const editHandler = id => {
+  const editItem = sales.find(item => item.id = id)  //this serches the array to see if the object has the id and returns the object
+  
+  setSalesInput({
+    ...salesInput,
+    date: editItem.date,
+    availGoods: editItem.availGoods,
+    category: editItem.category,
+    qty: editItem.qty,
+    cPrice: editItem.cPrice,
+    sPrice: editItem.sPrice
+  })
+  deleteHandler(id)
+} 
+
+
+
 ////////////Reducer/////////////
   const reducer = (accumulator, currentValue) => {
   const returns = accumulator + Number(currentValue.total)
@@ -71,7 +89,8 @@ const salesTotal = sales.reduce(reducer, 0)
         <td className='table-data'>{qty}</td>
         <td className='table-data'>{rate}</td>
         <td className='table-data'>{total}</td>
-        <button className='w-20 h-8 bg-gray-400 ml-2 relative left-3 top-1 rounded-md text-white font-bold text-lg shadow-xl hover:shadow hover:text-black hover:bg-white' onClick={deleteHandler}>Delete</button>
+        <button className='btn7 left-3' onClick={() => deleteHandler(value.id)}>Delete</button>
+        <button className='btn7 left-3' onClick={() => editHandler(value.id)}>Edit</button>
        </tr>
     )
    })
