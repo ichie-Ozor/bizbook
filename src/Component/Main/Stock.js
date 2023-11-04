@@ -91,7 +91,7 @@ const editHandler = id => {
   return (
     <div>
       <NavBar />
-      <Header />
+      <Header name={" Stocks Page"}/>
       <div className='absolute left top-22  container'>
         <form className='relative flex  left-2' onSubmit={submitHandler}>
           <input type='date' placeholder='date'className='btn6' name='date' value={stockInput.date} onChange={onChange}/>

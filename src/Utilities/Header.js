@@ -3,7 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom'
 
 
 
-function Header() {
+function Header({name}) {
   const navigate = useNavigate()
   const [ open, setOpen ] = useState(false)
   const [profile, setProfile ] = useState({
@@ -44,18 +44,18 @@ function Header() {
 
   return (
     <div className='bg-primary-200 h-36 flex'>
-      <NavLink to=''><div className='text-gray-300 relative left-56 top-14 text-3xl font-bold' onClick={() => navigate('dashboard')}>Welcome</div></NavLink>
-      <div className='header-profile flex relative bg-primary-500 w-96 h-28 top-4 rounded-l-ksm'>
+      <NavLink to=''><div className='left-4 text-gray-600 relative top-36 md:text-gray-400 md:left-56 md:top-14 text-3xl font-bold' onClick={() => navigate('dashboard')}>Welcome{name}</div></NavLink>
+      <div className='header-profile flex relative md:bg-primary-500 w-96 h-28 top-4 rounded-l-ksm'>
         <div className='header-img bg-gray-400  left-10 relative'>
           <img src='' alt='' />
         </div>
-        <div className=' text-white text-xl w-40 relative left-14 top-5'>Mr Ozoemena Ndubuisi Uroko</div>
-        <svg onClick={openProfile} className='text-white w-10 h-10 relative left-32 font-bold top-8 cursor-pointer' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+        <div className='header-name relative -left-80 text-lg font-bold text-black top-16 md:text-white md:text-xl md:w-40 md:left-14 md:top-5'>Mr Ozoemena Ndubuisi Uroko</div>
+        <svg onClick={openProfile} className='-left-48 top-1 text-white w-10 h-10 relative font-bold  cursor-pointer md:left-32 md:top-8' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
         </svg>
       </div>
       {open ?
-      <div className='relative z-10 w-96 h-96 bg-white grid justify-items-center rounded-xl shadow-xl top-32 left-1/3 hover:shadow-md'>
+      <div className='relative -left-96 top-36 bg-gray-100 z-10 w-96 h-96  grid justify-items-center rounded-xl shadow-xl md:top-32 md:left-1/3 md:bg-white hover:shadow-md'>
         <h3 className='text-xl text-gray-400 relative top-2'>Update your Profile</h3>
         <form onSubmit={profileHandler}>
           <input type='text' placeholder='Enter First Name' className='header-input' name='fName' value={profile.fName} onChange={onChange}/>

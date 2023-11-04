@@ -39,8 +39,9 @@ function Dashboard() {
   return (
     <div>
       <NavBar />
-      <Header />
+      <Header name={" Dashboard"}/>
        {/*******************  Main body here ***********************/}
+       <div className='relative -left-72 -top-72 md:left-0'>
        <div className='absolute top-80 left-80'>
         <NavLink to='stock'><button className='btn1'>Stock</button></NavLink>
         <NavLink to='sales'><button className='btn1'>Sales</button></NavLink>
@@ -63,6 +64,7 @@ function Dashboard() {
       }
       <CreditorModal onClose={handleCreditorOnClose} visible={showCreditorModal}/>
       <DebtorModal onClose={handleDebtorOnClose} visible={showDebtorModal} />
+      </div>
     </div>
   )
 }

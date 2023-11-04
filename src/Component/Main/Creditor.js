@@ -118,7 +118,7 @@ console.log(creditorTotal)
   return (
     <div>
       <NavBar />
-      <Header />
+      <Header name={" Creditor Page"}/>
       <div className='absolute left top-22 '>
         <form className='relative flex  left-56' onSubmit={submitHandler}>
           <input type='date' placeholder='date'className='btn4' name='date' value={creditorInput.date} onChange={onChange}/>
