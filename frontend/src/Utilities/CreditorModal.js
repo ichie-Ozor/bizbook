@@ -14,7 +14,7 @@ function CreditorModal({visible, onClose}) {
     address: ""
   })
 
-  // this collects all the data in the input field
+  // this collects all the data in the input field and store it in state
   const onChange = (e) => {
     e.preventDefault()
     const { name, value } = e.target
