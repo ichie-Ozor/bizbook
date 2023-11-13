@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import NavBar from '../../Utilities/NavBar'
 import Header from '../../Utilities/Header'
 
+// this is work i have not done
 function Creditor() {
   let initialValue 
   const [ creditor, setCreditor ] = useState([])
