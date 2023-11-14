@@ -15,7 +15,7 @@ function Creditor() {
     qty: "",
     rate: ""
   })
-
+// and this
 const onChange = (e) => {
   e.preventDefault()
   const { name, value } = e.target
