@@ -41,7 +41,7 @@ function Dashboard() {
       <NavBar />
       <Header name={" Dashboard"}/>
        {/*******************  Main body here ***********************/}
-       <div className='relative -left-72 -top-72 md:left-0'>
+       <div className='relative -left-64 -top-64 md:left-0'>
        <div className='absolute top-80 left-80'>
         <NavLink to='stock'><button className='btn1'>Stock</button></NavLink>
         <NavLink to='sales'><button className='btn1'>Sales</button></NavLink>
@@ -49,14 +49,14 @@ function Dashboard() {
         <button className='btn1' onClick={debtorHandler}>Debtor</button>
       </div>
       {openCreditor ? 
-      <div className='creditor relative w-1/5 h-24 bg-white flex p-4 shadow-2xl rounded hover:shadow'>
+      <div className='creditor relative w-48 md:w-1/5 h-24 bg-white md:flex md:p-4 shadow-2xl rounded hover:shadow'>
         <div className='btn2' onClick={() => setShowCreditorModal(true)}>New Account?</div>
         <NavLink to='creditor'><div className='btn2'>Old Account?</div></NavLink>
       </div> :
       <div></div>
       }
       {openDebtor ? 
-      <div className='debtor relative w-1/5 h-24 bg-white flex p-4 shadow-2xl rounded hover:shadow'>
+      <div className='debtor relative w-48 h-24 bg-white md:flex shadow-2xl rounded hover:shadow md:w-1/5 md:p-4'>
       <div className='btn2' onClick={() => setShowDebtorModal(true)}>New Account?</div>
       <NavLink to='debtor'><div className='btn2'>Old Account?</div></NavLink>
     </div> :

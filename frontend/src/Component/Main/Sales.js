@@ -106,7 +106,7 @@ const salesTotal = sales.reduce(reducer, 0)
           <input type='text' placeholder='Category' className='btn4' name='category' value={salesInput.category} onChange={onChange}/>
           <input type='number' placeholder='Qty' className='btn4' name='qty' value={salesInput.qty} onChange={onChange}/>
           <input type='number' placeholder='Rate N'className='btn4' name='rate' value={salesInput.rate} onChange={onChange}/>
-          <button type='submit' className='w-40 h-12 bg-gray-400 ml-2 relative left-1 top-4 rounded-md text-white font-bold text-lg shadow-xl hover:shadow hover:text-black hover:bg-white'>Submit</button>
+          <button type='submit' className='submit'>Submit</button>
         </form>
       </div>
       <table className='relative left-60 top-28 flex space-x-4'>

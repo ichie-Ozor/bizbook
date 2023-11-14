@@ -76,15 +76,15 @@ const editHandler = id => {
     const renderStock = stock.map((value, id) => {
       const { sPrice, date, availGoods, category, qty, cPrice } = value;
       return (
-         <tr key={id} className='relative left-56 top-28 mt-2 flex space-x-4'>
+         <tr key={id} className='flex left-22 bg-red-600 w-78 top-28 relative md:left-56 md:mt-2 md:space-x-4'>
           <td className='table-data'>{date}</td>
-          <td className='bg-gray-200 w-72 h-10 rounded pt-2 flex justify-center text-xl'>{availGoods}</td>
+          <td className='w-60 bg-gray-200  h-10 rounded pt-2 flex justify-center md:text-xl md:w-72'>{availGoods}</td>
           <td className='table-data'>{category}</td>
           <td className='table-data'>{qty}</td>
           <td className='table-data'>{cPrice}</td>
           <td className='table-data'>{sPrice}</td>
-          <button className='btn7 -left-1' onClick={() => deleteHandler(value.id)}>Delete</button>
-          <button className='btn7 -left-1' onClick={() => editHandler(value.id)}>Edit</button>
+          <button className='btn7 left-16 md:-left-1' onClick={() => deleteHandler(value.id)}>Delete</button>
+          <button className='btn7 left-16 md:-left-1' onClick={() => editHandler(value.id)}>Edit</button>
          </tr>
       )
      })
@@ -100,12 +100,12 @@ const editHandler = id => {
           <input type='number' placeholder='Qty' className='btn6' name='qty' value={stockInput.qty} onChange={onChange}/>
           <input type='number' placeholder='Cost Price N'className='btn6' name='cPrice' value={stockInput.cPrice} onChange={onChange}/>
           <input type='number' placeholder='Selling Price N'className='btn6' name='sPrice' value={stockInput.sPrice} onChange={onChange}/>
-          <button type='submit' className='w-40 h-12 bg-gray-400 ml-2 relative left-1 top-4 rounded-md text-white font-bold text-lg shadow-xl hover:shadow hover:text-black hover:bg-white'>Submit</button>
+          <button type='submit' className='submit'>Submit</button>
         </form>
       </div>
-      <table className='relative left-56 top-28 flex space-x-4'>
+      <table className='relative left-42 top-24 flex space-x-2 md:left-56 md:top-28 md:flex md:space-x-4'>
         <th className='table-header'>Date</th>
-        <th className='bg-gray-200 w-72 h-10 rounded pt-2'>Available Goods</th>
+        <th className='bg-gray-200 w-72 h-10 rounded pt-2 text-sm md:text-lg'>Available Goods</th>
         <th className='table-header'>Category</th>
         <th className='table-header'>Quantity</th>
         <th className='table-header'>Cost Price</th>
