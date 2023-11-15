@@ -8,13 +8,25 @@ function LandingPage() {
   // const { user, setUser, logOut} = useContext(AuthContext)
   const { user } = useContext(AuthContext)
   const [ clicked, setClicked ] = useState(true)
+  const [ isRegister, setIsRegister ] = useState({
+    fullName: "",
+    bizName: "",
+    email: "",
+    password:""
+  })
   const [isSigneIn, setIsSigneIn] = useState({
     email: "",
     password: ""
   }) 
 
   // const me = useContext(AuthProvider)
-
+ const onRegister = (e) => {
+  e.preventDefault()
+  const { name, value } = e.target
+  setIsRegister({
+    ...isRegister, [name] : value,
+  })
+ }
 
   const onChange = (e) => {
     e.preventDefault()
@@ -24,13 +36,46 @@ function LandingPage() {
     })   
   }
 
+  const isRegiterHandler = (e) => {
+    e.preventDefault()
+    if(isRegister.fullName !== "" && isRegister.bizName !== "" && isRegister.email !== "" && isRegister.password !== ""){
+      setIsRegister({
+        fullName: isRegister.fullName,
+        bizName: isRegister.bizName,
+        email: isRegister.email,
+        password:isRegister.password
+      })
+      console.log(isRegister)
+      setIsRegister({
+        fullName: "",
+        bizName: "",
+        email: "",
+        password:""
+       })
+    } else {
+     alert("Please register Now, Or 😡😡😠😡😡")
+     setIsRegister({
+      fullName: "",
+      bizName: "",
+      email: "",
+      password:""
+     })
+    }
+  }
   const isSignInHandler = (e) => {
     e.preventDefault()
       if (user.email === isSigneIn.email  && user.password === isSigneIn.password){
           navigate('dashboard')
     } else {
-      navigate('/')
+      // navigate('/')
       alert("respect yourself oh, Nkakwu 😂😂😂")
+      setClicked(false)
+      setIsRegister({
+        fullName: "",
+        bizName: "",
+        email: "",
+        password:""
+      })
     }
     setIsSigneIn({
       email: "",
@@ -45,7 +90,7 @@ function LandingPage() {
       <div className='float-left w-1/2 h-screen grid items-center justify-items-center'>
           <div className='absolute top-32 w-64 left-10 md:top-56 md:left-72'>
             <span className='text-4xl font-bold'>Welcome Back</span>
-            <p className=''>Enter Your Details Below</p>
+            <p className='relative left-8'>Enter Your Details Below</p>
           </div>
           { clicked?
           <>
@@ -57,14 +102,14 @@ function LandingPage() {
           <div className='relative -top-32 text-sm flex'>Don't have an A<p className='text-white md:text-black'>ccount? </p><span onClick={() => setClicked(false)} className='cursor-pointer text-white md:text-primary-200'>Register</span></div>
           </> :
           <>
-          <form className='relative top-48 p-2 left-16 w-96'>
-            <input type='text' placeholder='Full Name' className='input'/>
-            <input type='text' placeholder='Business Name' className='input'/>
-            <input type='email' placeholder='Email Address' className='input'/>
-            <input type='password' placeholder='Password' className='input' />
+          <form className='absolute md:relative top-44 md:top-44 p-2 left-16 w-96' onSubmit={isRegiterHandler}>
+            <input type='text' placeholder='Full Name' className='input' name='fullName' value={isRegister.fullName} onChange={onRegister}/>
+            <input type='text' placeholder='Business Name' className='input' name='bizName' value={isRegister.bizName} onChange={onRegister}/>
+            <input type='email' placeholder='Email Address' className='input' name='email' value={isRegister.email} onChange={onRegister}/>
+            <input type='password' placeholder='Password' className='input' name='password' value={isRegister.password} onChange={onRegister}/>
             <button type='submit' className='btn'>Register</button>
           </form>
-          <div className='relative top-18 text-sm'>Already have an Account? <span onClick={() => setClicked(true)} className='cursor-pointer text-primary-200'>Sign In</span></div>
+          <div className='relative top-60 left-24 md:top-0 md:left-4 text-sm'>Already have an Account? <span onClick={() => setClicked(true)} className='cursor-pointer text-white md:text-primary-200'>Sign In</span></div>
           </>}
       </div>
 
